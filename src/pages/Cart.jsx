@@ -82,9 +82,6 @@ const Cart = ({
           <>
             <div className="cart__grid-top">
               <h2 className="cart-title">Cart</h2>
-              <div className="cart-sub-title">
-                <h3 className="cart-step active-step"><small><strong>Step 1 of 3:</strong> Adjust & Confirm Order</small></h3>
-              </div>
               <div className="grid-top--labels">
                 <h5>Book</h5> <h5>Quantity</h5> <h5>Price</h5>
               </div>
@@ -95,11 +92,11 @@ const Cart = ({
             <div className="show-tax-and-totals">
               <div className="taxtotal__row">
                 <h5>Subtotal</h5>
-                <span>${subtotal.toFixed(2)}</span>
+                <span className="total--num">${subtotal.toFixed(2)}</span>
               </div>
               <div className="taxtotal__row">
                 <h5>Tax (8%)</h5>
-                <span>${tax.toFixed(2)}</span>
+                <span className="total--num">${tax.toFixed(2)}</span>
               </div>
               <div className="taxtotal__row taxtotal__row--final">
                 <h5 className="total-amt">

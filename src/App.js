@@ -6,9 +6,11 @@ import OpenBook from "./pages/OpenBook";
 import Checkout from "./pages/Checkout";
 import Cart from "./pages/Cart";
 import Finalize from "./pages/Finalize";
+import PageNotFound from "./pages/PageNotFound";
+import Img404 from "./assets/404.png";
 import DeliveryPriceCalculator from "./components/DeliveryPriceCalculator";
 import { useState } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { books } from "./data";
 
 function App() {
@@ -79,45 +81,59 @@ function App() {
         <Router>
             <div className="App">
                 <Nav numberOfItems={numberOfItems} />
-                <Route path="/" exact render={() => <Home />} />
-                <Route
-                    path="/books"
-                    exact
-                    render={() => <Books books={books} />}
-                />
-                <Route
-                    path="/books/:id"
-                    render={() => (
-                        <OpenBook
-                            cartItems={cartItems}
-                            books={books}
-                            addItemToCart={addItemToCart}
-                        />
-                    )}
-                />
-                <Route
-                    path="/cart"
-                    render={() => (
-                        <Cart
-                            cartItems={cartItems}
-                            addItemToCart={addItemToCart}
-                            removeItemFromCart={removeItemFromCart}
-                            updateItemQuantity={updateItemQuantity}
-                        />
-                    )}
-                />
-                <Route
-                    path="/checkout"
-                    render={(props) => (
-                        <Checkout {...props} CartItems={cartItems} DeliveryPriceCalculator={DeliveryPriceCalculator} />
-                    )}
-                />
-                <Route 
-                    path="/finalize" 
-                    render={(props) => (
-                        <Finalize {...props} CartItems={cartItems} />
-                    )}
-                />
+                <Switch>
+                    <Route path="/" exact render={() => <Home />} />
+                    <Route
+                        path="/books"
+                        exact
+                        render={() => <Books books={books} />}
+                    />
+                    <Route
+                        path="/books/:id"
+                        render={() => (
+                            <OpenBook
+                                cartItems={cartItems}
+                                books={books}
+                                addItemToCart={addItemToCart}
+                            />
+                        )}
+                    />
+                    <Route
+                        path="/cart"
+                        render={() => (
+                            <Cart
+                                cartItems={cartItems}
+                                addItemToCart={addItemToCart}
+                                removeItemFromCart={removeItemFromCart}
+                                updateItemQuantity={updateItemQuantity}
+                            />
+                        )}
+                    />
+                    <Route
+                        path="/checkout"
+                        render={(props) => (
+                            <Checkout
+                                {...props}
+                                CartItems={cartItems}
+                                DeliveryPriceCalculator={
+                                    DeliveryPriceCalculator
+                                }
+                            />
+                        )}
+                    />
+                    <Route
+                        path="/finalize"
+                        render={(props) => (
+                            <Finalize {...props} CartItems={cartItems} />
+                        )}
+                    />
+                    <Route
+                        path="*"
+                        render={(props) => (
+                            <PageNotFound {...props} Img404={Img404} />
+                        )}
+                    />
+                </Switch>
                 <Footer />
             </div>
         </Router>

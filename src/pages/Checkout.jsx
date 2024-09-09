@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams, useHistory, useLocation, Link } from "react-router-dom";
 import "./Checkout.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLock } from "@fortawesome/free-solid-svg-icons";
+
 import DeliveryPriceCalculator from "../components/DeliveryPriceCalculator";
 
 const Checkout = ({ CartItems }) => {
@@ -19,9 +22,80 @@ const Checkout = ({ CartItems }) => {
         }
     };
 
-    function formSubmit() {
+    function formSubmit(evt) {
+        evt.preventDefault();
         // Perform checkout logic here
         console.log("Submitting checkout form");
+
+        const email = document.querySelector("#email").value;
+        const firstName = document.querySelector(".firstName").value;
+        const lastName = document.querySelector(".lastName").value;
+        const address1 = document.querySelector(".address1").value;
+        const address2 = document.querySelector(".address2").value;
+        const city = document.querySelector(".city").value;
+        const state = document.querySelector(".stateSelect").value;
+        const zipCode = document.querySelector(".zipCode").value;
+        const country = document.querySelector(".selectCountry").value;
+        const phone = document.querySelector(".phone").value;
+
+        if (document.querySelector(".showShipping").checked) {
+            // BILLING ADDRESS IS SAME AS SHIPPING
+            sessionStorage.setItem("email", email);
+            sessionStorage.setItem("firstName", firstName);
+            sessionStorage.setItem("lastName", lastName);
+            sessionStorage.setItem("address1", address1);
+            sessionStorage.setItem("address2", address2);
+            sessionStorage.setItem("city", city);
+            sessionStorage.setItem("state", state);
+            sessionStorage.setItem("zipCode", zipCode);
+            sessionStorage.setItem("country", country);
+            sessionStorage.setItem("phone", phone);
+        } else {
+            // BILLING ADDRESS IS DIFFERENT
+            const billingFirstName =
+                document.querySelector(".billingFirstName").value;
+            const billingLastName =
+                document.querySelector(".billingLastName").value;
+            const billingAddress1 =
+                document.querySelector(".billingAddress1").value;
+            const billingAddress2 =
+                document.querySelector(".billingAddress2").value;
+            const billingCity = document.querySelector(".billingCity").value;
+            const billingZip = document.querySelector(".billingZipCode").value;
+            const billingState = document.querySelector(
+                ".billingStateSelect"
+            ).value;
+            const billingSelectCountry = document.querySelector(
+                ".billingSelectCountry"
+            ).value;
+            const billingPhone = document.querySelector(".billingPhone").value;
+
+            sessionStorage.setItem("email", email);
+            sessionStorage.setItem("firstName", firstName);
+            sessionStorage.setItem("lastName", lastName);
+            sessionStorage.setItem("address1", address1);
+            sessionStorage.setItem("address2", address2);
+            sessionStorage.setItem("city", city);
+            sessionStorage.setItem("state", state);
+            sessionStorage.setItem("zipCode", zipCode);
+            sessionStorage.setItem("country", country);
+            sessionStorage.setItem("phone", phone);
+
+            sessionStorage.setItem("billingFirstName", billingFirstName);
+            sessionStorage.setItem("billingLastName", billingLastName);
+            sessionStorage.setItem("billingAddress1", billingAddress1);
+            sessionStorage.setItem("billingAddress2", billingAddress2);
+            sessionStorage.setItem("billingCity", billingCity);
+            sessionStorage.setItem("billingState", billingState);
+            sessionStorage.setItem("billingZipCode", billingZip);
+        }
+
+        {
+            setTimeout(() => {
+                // Redirect to /finalize
+                window.location.href = "/finalize";
+            }, 500);
+        }
     }
 
     useEffect(() => {
@@ -30,7 +104,7 @@ const Checkout = ({ CartItems }) => {
 
         if (form) {
             form.addEventListener("submit", function (event) {
-               // event.preventDefault(); // Prevent default submission
+                // event.preventDefault(); // Prevent default submission
                 console.log("Form submitted");
             });
         } else {
@@ -97,18 +171,23 @@ const Checkout = ({ CartItems }) => {
     return (
         <div className="container container-checkout">
             <div className="row">
-                <h2 className="checkout-title">Secure Checkout</h2>
+                <div className="checkout-title--wrapper">
+                    <span className="lock-icon">
+                        <FontAwesomeIcon icon={faLock} />
+                    </span>
+                    <h2 className="checkout-title">Checkout</h2>
+                </div>
                 <div className="checkout-sub-title">
                     <h3 className="cart-step active-step">
                         <small>
-                            <strong>Step 2 of 3:</strong> Customer Information
+                            <strong>Step 1 of 3:</strong> Shipping
                         </small>
                     </h3>
                 </div>
                 <div className="shipping-info__container">
                     <div className="ship-info--title">
                         <h2 className="checkout-title checkout-section-title">
-                            Shipping Address
+                            Ship To
                         </h2>
                     </div>
                     <div className="checkout-info--wrapper">
@@ -116,9 +195,7 @@ const Checkout = ({ CartItems }) => {
                             <form
                                 ref={formRef}
                                 className="submitCustInfo"
-                                action="/finalize"
-                                method="GET"
-                                onSubmit={formSubmit}
+                                onSubmit={(event) => formSubmit(event)}
                             >
                                 <label className="email-label" htmlFor="email">
                                     <span className="red">*</span> Email:
@@ -126,6 +203,7 @@ const Checkout = ({ CartItems }) => {
                                 <input
                                     type="email"
                                     id="email"
+                                    className="email"
                                     name="email"
                                     value={inputs[0]}
                                     onChange={handleInputChange(0)}
@@ -140,6 +218,7 @@ const Checkout = ({ CartItems }) => {
                                         <input
                                             type="text"
                                             name="firstname"
+                                            className="firstName"
                                             value={inputs[1]}
                                             onChange={handleInputChange(1)}
                                         />
@@ -152,6 +231,7 @@ const Checkout = ({ CartItems }) => {
                                         <input
                                             type="text"
                                             name="lastname"
+                                            className="lastName"
                                             value={inputs[2]}
                                             onChange={handleInputChange(2)}
                                         />
@@ -166,6 +246,7 @@ const Checkout = ({ CartItems }) => {
                                         <input
                                             type="text"
                                             name="address1"
+                                            className="address1"
                                             value={inputs[3]}
                                             onChange={handleInputChange(3)}
                                         />
@@ -174,7 +255,11 @@ const Checkout = ({ CartItems }) => {
                                         <label htmlFor="address2">
                                             Address Line 2:
                                         </label>
-                                        <input type="text" name="address2" />
+                                        <input
+                                            type="text"
+                                            name="address2"
+                                            className="address2"
+                                        />
                                     </div>
                                 </div>
                                 <div className="checkout-info-blob">
@@ -184,8 +269,8 @@ const Checkout = ({ CartItems }) => {
                                         </label>
                                         <input
                                             type="text"
-                                            className="city-data"
                                             name="city"
+                                            className="city"
                                             value={inputs[4]}
                                             onChange={handleInputChange(4)}
                                         />
@@ -306,7 +391,7 @@ const Checkout = ({ CartItems }) => {
                                         </label>
                                         <input
                                             type="text"
-                                            className="zip-data"
+                                            className="zipCode"
                                             name="zip"
                                             value={inputs[6]}
                                             onChange={handleInputChange(6)}
@@ -332,12 +417,16 @@ const Checkout = ({ CartItems }) => {
                                         <label htmlFor="mobile">
                                             Mobile Phone:
                                         </label>
-                                        <input type="text" name="mobile" />
+                                        <input
+                                            type="text"
+                                            name="mobile"
+                                            className="phone"
+                                        />
                                     </div>
-                                    <div className="blob--right">
+                                    <div className="blob--right blob--right-final">
                                         <label htmlFor="shipping-info">
                                             <p className="shipping-title-small">
-                                                Billing Address Same As Shipping
+                                                Use as billing address
                                             </p>
                                         </label>
                                         <input
@@ -378,7 +467,7 @@ const Checkout = ({ CartItems }) => {
                                 </p>
                                 <p className="cart-summary__item-total cart-summary__item">
                                     Total:{" "}
-                                    <span className="cart-summary--item">
+                                    <span className="cart-summary--item cart-summary--item-final">
                                         $
                                         {(
                                             +sumCartItemPrice() +
@@ -414,48 +503,39 @@ const Checkout = ({ CartItems }) => {
                             <div className="ship-info--form-body">
                                 <form
                                     className="submitCustInfo2"
-                                    action="/submit"
-                                    method="POST"
+                                    action="/finalize"
                                 >
-                                    <label
-                                        className="email-label"
-                                        htmlFor="email"
-                                    >
-                                        Email:
-                                    </label>
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        name="email"
-                                    />
                                     <div className="checkout-info-blob">
                                         <div className="blob--left">
-                                            <label htmlFor="firstname">
+                                            <label htmlFor="billingFirstName">
                                                 First Name:
                                             </label>
                                             <input
                                                 type="text"
-                                                name="firstname"
+                                                className="billingFirstName"
+                                                name="billingFirstName"
                                             />
                                         </div>
                                         <div className="blob--right">
-                                            <label htmlFor="lastname">
+                                            <label htmlFor="billingLastName">
                                                 Last Name:
                                             </label>
                                             <input
                                                 type="text"
-                                                name="lastname"
+                                                name="billingLastName"
+                                                className="billingLastName"
                                             />
                                         </div>
                                     </div>
                                     <div className="checkout-info-blob">
                                         <div className="blob--left">
-                                            <label htmlFor="address1">
+                                            <label htmlFor="billingAddress1">
                                                 Address Line 1:
                                             </label>
                                             <input
                                                 type="text"
-                                                name="address1"
+                                                name="billingAddress1"
+                                                className="billingAddress1"
                                             />
                                         </div>
                                         <div className="blob--right">
@@ -465,6 +545,7 @@ const Checkout = ({ CartItems }) => {
                                             <input
                                                 type="text"
                                                 name="address2"
+                                                className="billingAddress2"
                                             />
                                         </div>
                                     </div>
@@ -473,7 +554,7 @@ const Checkout = ({ CartItems }) => {
                                             <label htmlFor="city">City:</label>
                                             <input
                                                 type="text"
-                                                className="city-data"
+                                                className="billingCity"
                                                 name="city"
                                             />
                                         </div>
@@ -482,8 +563,8 @@ const Checkout = ({ CartItems }) => {
                                                 State:
                                             </label>
                                             <select
-                                                className="stateSelect"
                                                 name="stateSelect"
+                                                className="billingStateSelect"
                                             >
                                                 <option value="">
                                                     Choose State
@@ -645,8 +726,8 @@ const Checkout = ({ CartItems }) => {
                                             </label>
                                             <input
                                                 type="text"
-                                                className="zip-data"
                                                 name="zip"
+                                                className="billingZipCode"
                                             />
                                         </div>
                                         <div className="blob--right">
@@ -655,7 +736,7 @@ const Checkout = ({ CartItems }) => {
                                             </label>
                                             <select
                                                 name="selectCountry"
-                                                className="selectCountry"
+                                                className="billingSelectCountry"
                                                 defaultValue="US"
                                             >
                                                 <option>United States</option>
@@ -668,7 +749,11 @@ const Checkout = ({ CartItems }) => {
                                             <label htmlFor="mobile">
                                                 Mobile Phone:
                                             </label>
-                                            <input type="text" name="mobile" />
+                                            <input
+                                                type="text"
+                                                name="mobile"
+                                                className="billingPhone"
+                                            />
                                         </div>
                                         <div className="blob--right"></div>
                                     </div>

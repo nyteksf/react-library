@@ -1,17 +1,26 @@
 .container-checkout {
-    padding: 36px 0;
+    padding: 32px 0;
 }
 
 .red {
     color: salmon;
 }
 
+.checkout-title--wrapper {
+    display: flex;
+    align-items: center;
+}
+
 .checkout-title {
     text-align: left;
     margin-left: 8px;
     margin-right: 8px;
+    margin-bottom: 0;
+    color: #333333ea;
+}
+
+.checkout-section-title {
     margin-bottom: 24px;
-    color: #333;
 }
 
 .ship-info--form-body {
@@ -24,6 +33,10 @@
     max-width: 35%;
     border: 1px solid black;
     height: 100px;
+}
+
+.cart-summary--item-final {
+    font-size: 20px;
 }
 
 .checkout-info--wrapper {
@@ -50,7 +63,7 @@
 }
 
 .checkout-sub-title {
-    color: #333;
+    color: #333333ea;
     margin-bottom: 24px;
     font-size: 20px;
     margin-left: 8px;
@@ -83,6 +96,14 @@
     max-width: 40%;
     display: flex;
     flex-direction: column;
+}
+
+.blob--right-final {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: left;
 }
 
 label {
@@ -130,7 +151,8 @@ input {
 }
 
 .cart__summary--title {
-    color: #333;
+    color: #333333ea;
+    margin-bottom: 16px;
 }
 
 .cart-summary__item-count {
@@ -146,6 +168,7 @@ input {
 
 .cart-summary__item-total {
     font-weight: 700;
+    font-size: 20px;
 }
 
 .btn__checkout.disabled {
@@ -157,6 +180,8 @@ input {
     border-right: 2px solid rgb(78, 90, 101);
 }
 
+.billingStateSelect,
+.billingSelectCountry,
 .selectCountry,
 .stateSelect {
     width: 100%;
@@ -176,21 +201,29 @@ input {
 }
 
 .shipping-title-small {
-    font-size: 14px;
+    font-size: 16px;
     color: #333;
 }
 
 .showShipping {
-    width: 34px;
+    width: 24px;
     border-radius: 0;
+    position: relative;
+    top: 5px;
+    margin-right: 8px;
 }
 
 .showShipping:checked,
 input[type="radio"]:checked {
     background-color: pink; /* Blue when checked */
     border-color: pink;
-  }
+}
 
-  .shipping-info__container--last {
+.shipping-info__container--last {
     margin-top: 32px;
-  }
+}
+
+.lock-icon {
+    font-size: 24px;
+    color: #333333ea;
+}
