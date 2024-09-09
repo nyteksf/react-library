@@ -177,13 +177,21 @@ const Checkout = ({ CartItems }) => {
                     </span>
                     <h2 className="checkout-title">Checkout</h2>
                 </div>
-                <div className="checkout-sub-title">
-                    <h3 className="cart-step active-step">
-                        <small>
-                            <strong>Step 1 of 3:</strong> Shipping
-                        </small>
-                    </h3>
-                </div>
+                <div className="progress-tracker--wrapper">
+                        <div className="progress-tracker--progress">
+                            <div className="progress-bar" />
+                        </div>
+                        <div className="progress-tracker-step--nums">
+                            <div className="step-num active-num">1</div>
+                            <div className="step-num">2</div>
+                            <div className="step-num">3</div>
+                        </div>
+                        <div className="progress-tracker--steps">
+                            <div className="step step--left">Shipping</div>
+                            <div className="step step--center">Payment and Billing</div>
+                            <div className="step step--right">Review and Place Order</div>
+                        </div>
+                    </div>
                 <div className="shipping-info__container">
                     <div className="ship-info--title">
                         <h2 className="checkout-title checkout-section-title">

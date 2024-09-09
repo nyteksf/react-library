@@ -1,5 +1,5 @@
 .container-checkout {
-    padding: 32px 0;
+    padding: 32px 0 48px 0;
 }
 
 .red {
@@ -13,14 +13,71 @@
 
 .checkout-title {
     text-align: left;
-    margin-left: 8px;
+    margin-left:  8px;
     margin-right: 8px;
     margin-bottom: 0;
     color: #333333ea;
 }
 
-.checkout-section-title {
-    margin-bottom: 24px;
+.progress-bar {
+    width: 100%;
+    border-bottom: 2px solid gray;
+    position: relative;
+    top: 24px;
+    z-index: -1;
+}
+
+.progress-tracker--steps {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0 12px 0;
+}
+
+.progress-tracker-step--nums {
+    display: flex;
+    justify-content: space-between;
+}
+
+.step-num {
+    width: 45px;
+    height: 45px;
+    border: 2px solid gray;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    background: #f5f5f5;
+    transition: all 300ms;
+    color: #333333ea;
+}
+
+.step {
+    width: 95px;
+    height: 45px;
+    border-radius: 50%;
+    color: darkgray;
+}
+
+.step--left {
+    text-align: left;
+}
+
+.step--right {
+    text-align: right;
+}   
+
+.step--center {
+    text-align: center;
+}
+
+.progress-tracker--wrapper {
+    margin-top: 8px;
+}
+
+.active-num {
+    color: #f5f5f5;
+    background-color: #242424;
 }
 
 .ship-info--form-body {
@@ -52,10 +109,11 @@
 .checkout-section-title {
     font-weight: 500;
     background-color: gray;
-    padding-left: 8px;
+    padding-left:  8px;
     padding-right: 8px;
-    margin-left: 0;
+    margin-left:  0;
     margin-right: 0;
+    margin-bottom: 32px;
     color: lightgray;
     padding-top: 8px;
     padding-bottom: 8px;
@@ -110,12 +168,12 @@ label {
     margin-bottom: 2px;
     margin-top: 16px;
     font-size: 18px;
-    font-weight: 400;
+    font-weight: 300;
     color: #333;
 }
 
 input {
-    height: 32px;
+    height: 34px;
     padding-left: 16px;
     font-size: 18px;
     border-radius: 4px;
@@ -189,10 +247,6 @@ input {
     font-size: 18px;
     height: 34px;
     color: #333;
-}
-
-input {
-    height: 34px;
 }
 
 .tax-rate,
