@@ -1,5 +1,9 @@
+import ProgressTracker from "../components/ui/ProgressTracker";
+import CartSummary from "../components/ui/CartSummary";
+import CheckoutSectionTitle from "../components/ui/CheckoutSectionTitle";
 import React, { useState, useEffect, useRef } from "react";
 import { useParams, useHistory, useLocation, Link } from "react-router-dom";
+import { } from "react-router-dom";
 import "./Checkout.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
@@ -7,23 +11,20 @@ import { faLock } from "@fortawesome/free-solid-svg-icons";
 import DeliveryPriceCalculator from "../components/DeliveryPriceCalculator";
 
 const Checkout = ({ CartItems }) => {
+    const [stepNumber, setStepNumber] = useState("one");
     const [isChecked, setIsChecked] = useState(true);
     const [inputs, setInputs] = useState(["", "", "", "", "", "", ""]);
+   
     let isDisabled = true;
+    let isReadyToPay = false;
+    const formRef = useRef(null);
+    const history = useHistory();
 
     // Determine if all inputs are valid (non-empty)
     const allInputsValid = inputs.every((value) => value.length > 0);
 
-    const formRef = useRef(null);
-
-    const submitForm = () => {
-        if (formRef.current) {
-            formRef.current.requestSubmit();
-        }
-    };
-
-    function formSubmit(evt) {
-        evt.preventDefault();
+    function formSubmit() {
+        alert("FORMSUBMITTTT")
         // Perform checkout logic here
         console.log("Submitting checkout form");
 
@@ -40,6 +41,7 @@ const Checkout = ({ CartItems }) => {
 
         if (document.querySelector(".showShipping").checked) {
             // BILLING ADDRESS IS SAME AS SHIPPING
+            alert("SAME BILLING AS SHIPPING")
             sessionStorage.setItem("email", email);
             sessionStorage.setItem("firstName", firstName);
             sessionStorage.setItem("lastName", lastName);
@@ -52,6 +54,7 @@ const Checkout = ({ CartItems }) => {
             sessionStorage.setItem("phone", phone);
         } else {
             // BILLING ADDRESS IS DIFFERENT
+            alert("BILLING ADDY DIFFERENT FROM SHIPPING")
             const billingFirstName =
                 document.querySelector(".billingFirstName").value;
             const billingLastName =
@@ -92,8 +95,8 @@ const Checkout = ({ CartItems }) => {
 
         {
             setTimeout(() => {
-                // Redirect to /finalize
-                window.location.href = "/finalize";
+                // Redirect to /payment
+                history.push("/payment");
             }, 500);
         }
     }
@@ -124,7 +127,7 @@ const Checkout = ({ CartItems }) => {
     };
 
     // Determine if the button should be disabled
-    isDisabled = !allInputsValid;
+    isReadyToPay = allInputsValid;
 
     /* 
     
@@ -133,10 +136,9 @@ const Checkout = ({ CartItems }) => {
     
     */
 
-    const history = useHistory();
     const location = useLocation();
 
-    // Redirect to /cart if the user tries to access /checkout without having items in the cart
+    // Redirect user back to empty /cart page if the user tries to access /checkout without having items in said cart
     {
         /*
     useEffect(() => {
@@ -148,26 +150,6 @@ const Checkout = ({ CartItems }) => {
 */
     }
 
-    function countCartItems() {
-        let totalItems = 0;
-
-        CartItems.forEach((item) => {
-            totalItems += item.quantity;
-        });
-        return totalItems;
-    }
-
-    function sumCartItemPrice() {
-        let totalPrice = 0;
-
-        CartItems.forEach((item) => {
-            totalPrice +=
-                item.quantity * (item.salePrice || item.originalPrice);
-        });
-
-        return totalPrice.toFixed(2);
-    }
-
     return (
         <div className="container container-checkout">
             <div className="row">
@@ -177,27 +159,9 @@ const Checkout = ({ CartItems }) => {
                     </span>
                     <h2 className="checkout-title">Checkout</h2>
                 </div>
-                <div className="progress-tracker--wrapper">
-                        <div className="progress-tracker--progress">
-                            <div className="progress-bar" />
-                        </div>
-                        <div className="progress-tracker-step--nums">
-                            <div className="step-num active-num">1</div>
-                            <div className="step-num">2</div>
-                            <div className="step-num">3</div>
-                        </div>
-                        <div className="progress-tracker--steps">
-                            <div className="step step--left">Shipping</div>
-                            <div className="step step--center">Payment and Billing</div>
-                            <div className="step step--right">Review and Place Order</div>
-                        </div>
-                    </div>
+                <ProgressTracker stepNumber="one" />
                 <div className="shipping-info__container">
-                    <div className="ship-info--title">
-                        <h2 className="checkout-title checkout-section-title">
-                            Ship To
-                        </h2>
-                    </div>
+                    <CheckoutSectionTitle title="Ship To" />
                     <div className="checkout-info--wrapper">
                         <div className="ship-info--form-body">
                             <form
@@ -416,7 +380,6 @@ const Checkout = ({ CartItems }) => {
                                             defaultValue="US"
                                         >
                                             <option>United States</option>
-                                            <option>Canada</option>
                                         </select>
                                     </div>
                                 </div>
@@ -447,71 +410,29 @@ const Checkout = ({ CartItems }) => {
                                 </div>
                             </form>
                         </div>
-                        <div className="cart__summary">
-                            <h2 className="cart__summary--title">
-                                Cart Summary
-                            </h2>
-                            <div className="cart-summary--details">
-                                {/* RENDER CART INFO HERE */}
-                                <p className="cart-summary__item-count cart-summary__item">
-                                    Subtotal ({countCartItems()}{" "}
-                                    {countCartItems() > 1 ? "Items" : "Item"}):
-                                    <span className="cart-summary--item">
-                                        ${sumCartItemPrice()}
-                                    </span>
-                                </p>
-                                <p className="cart-summary__item-tax cart-summary__item">
-                                    Tax (8%):{" "}
-                                    <span className="cart-summary--item">
-                                        $
-                                        {(sumCartItemPrice() * 0.08).toFixed(2)}
-                                    </span>
-                                </p>
-                                <p className="cart-summary__item-shipping cart-summary__item">
-                                    S & H (FedEx Ground):{" "}
-                                    <span className="cart-summary--item cart-summary--item-s-and-h">
-                                        $8.95
-                                    </span>
-                                </p>
-                                <p className="cart-summary__item-total cart-summary__item">
-                                    Total:{" "}
-                                    <span className="cart-summary--item cart-summary--item-final">
-                                        $
-                                        {(
-                                            +sumCartItemPrice() +
-                                            8.95 +
-                                            sumCartItemPrice() * 0.08
-                                        ).toFixed(2)}
-                                    </span>
-                                </p>
-                                {/*<Link to={isDisabled ? "#" : "/finalize"}> */}
-                                <button
-                                    type="submit"
-                                    className={`btn btn__checkout ${
-                                        isDisabled ? "disabled" : ""
-                                    }`}
-                                    disabled={isDisabled}
-                                    onClick={submitForm}
-                                >
-                                    Enter Payment Details
-                                </button>
-                                {/*</Link>*/}
-                            </div>
-                        </div>
+                        <CartSummary 
+                            CartItems={CartItems} 
+                            isDisabled={isDisabled}
+                            isReadyToPay={isReadyToPay}
+                            formRef={formRef} 
+                            title={"Enter Payment Details"}
+                            stepNumber={stepNumber}
+                            formSubmit={formSubmit}
+                        />
                     </div>
                 </div>
                 {!isChecked && (
                     <div className="shipping-info__container shipping-info__container--last">
                         <div className="ship-info--title">
                             <h2 className="checkout-title checkout-section-title">
-                                Billing Address
+                                Bill To
                             </h2>
                         </div>
                         <div className="checkout-info--wrapper">
                             <div className="ship-info--form-body">
                                 <form
                                     className="submitCustInfo2"
-                                    action="/finalize"
+                                    action="/payment"
                                 >
                                     <div className="checkout-info-blob">
                                         <div className="blob--left">

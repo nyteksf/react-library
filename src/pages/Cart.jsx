@@ -13,7 +13,7 @@ const Cart = ({
     return acc + item.quantity * (item.salePrice || item.originalPrice);
   }, 0);
 
-  const taxRate = 0.08; // 8% tax rate
+  const taxRate = 0.08; // 8% TAX RATE
   const tax   = subtotal * taxRate;
   const total = subtotal + tax;
 

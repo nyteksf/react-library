@@ -45,8 +45,8 @@
     font-size: 20px;
     color: #333;
     letter-spacing: 0.2px;
-    margin-left: 8px;
-    margin-right: 8px;
+    margin-left:  4px;
+    margin-right: 4px;
     padding-left: 8px;
     padding-right: 8px;
     font-weight: 400 !important;
@@ -121,7 +121,7 @@
     font-weight: 900;
     padding: 12px 0;
     margin-top: 16px;
-    letter-spacing: 0.2px;
+    letter-spacing: 0.3px;
     border-left: 2px solid #4c05dae0;
     border-right: 2px solid #4c05dae0;
     border-bottom: 4px solid #4c05dae0;

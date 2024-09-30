@@ -1,0 +1,357 @@
+.estimatedDeliveryTime {
+    
+    border: 1px solid black;
+}
+
+.payment--wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.eta--left, .eta--right {
+    display: flex;
+    align-items: center;
+    
+}
+
+.estimated-payment--wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 24px 44px 24px;
+    border: 1px solid #d3d3d385;
+    margin-bottom: 16px;
+    color: #333;
+}
+
+.payment-method {
+    color: #333;
+}
+
+.eta-left {
+    display: flex;
+    align-items: center;
+}
+
+.estimated-payment--title {
+    margin-bottom: 0;
+    letter-spacing: -0.1px;
+}
+
+.left-side {
+    width: 100%;
+    max-width: 60%;
+    margin: 0 16px;
+}
+
+.fa-plus {
+    font-size: 20px;
+    cursor: pointer;
+    transform: scale(1);
+    transition: all 300ms ease;
+}
+
+.fa-minus:hover,
+.fa-plus:hover {
+    transform: scale(1.1);
+    color: #333333e6;
+}
+
+.fa-check {
+    font-size: 22px;
+}
+
+.fa-check::after {
+    width: 30px;
+    height: 30px;
+    background: black;
+    border-radius: 50%;
+}
+
+.eta-left span {
+    position: relative;
+    display: inline-block;
+    margin-right: 16px;
+}
+
+.eta-left span::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width:  28px; /* Adjust the size as needed */
+    height: 28px; /* Adjust the size as needed */
+    border: 2px solid #000; /* Adjust border color */
+    border-radius: 50%;
+    background-color: transparent;
+    pointer-events: none; /* To avoid blocking interactions with the checkmark */
+}
+
+.fa-minus {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.fa-truck {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+.shippingETA {
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 0.1px;
+}
+
+.option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 8px;
+    padding: 16px;
+    border: 1px solid #d3d3d385;
+    border-bottom: none;
+    background-color: white;
+    transition: all 350ms ease;
+}
+
+.option:last-child {
+    border-bottom: 1px solid #d3d3d385;
+}
+
+.option:hover {
+    background-color: #d8d8d8;
+}
+
+.option__img {
+    width: 88px;
+    display: flex;
+}
+
+.payment-methods--wrapper {
+    padding: 8px;
+}
+
+.cart-summary--wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.option__text {
+    position: absolute;
+    margin-top: 12px;
+    margin-left: 102px;
+    font-size: 22px;
+    letter-spacing: 0.2px;
+    font-weight: 500;
+}
+
+.option__text--dual {
+    margin-top:  2px;
+    margin-left: 16px;
+}
+
+
+.payment-method__text {
+    text-align: left;
+    margin-left: 8px;
+    letter-spacing: -0.1px;
+    margin-top: 8px;
+}
+
+.payment-method {
+    position: relative;
+    text-align: left;
+    border: 1px solid #d3d3d385;
+    padding: 16px 16px 32px 16px;
+    text-align: left;
+    background-color: whitesmoke;
+    margin-bottom: 32px;
+}
+
+.option__sub-title {
+    font-size: 16px;
+    font-weight: 400;
+    position: relative;
+    top: -4px;
+    color: slategray;
+}
+
+.option__toggle {
+    z-index: 100;
+    position: absolute;
+    right: 0;
+    margin-right: 48px;
+}
+
+.option__body {
+    border-left: 1px solid #d3d3d385;
+    border-bottom: 1px solid #d3d3d385;
+    border-right: 1px solid #d3d3d385;
+    margin: 0 8px;
+}
+
+.btn__option {
+    width: 95%;
+    margin: 0 16px 24px 16px;
+}
+
+.option__body--text {
+    padding: 8px 16px;
+    font-weight: 500;
+}
+
+.option__body--title {
+    margin-bottom: 0;
+    text-align: left;
+    margin-left: 16px;
+    font-size: 30px;
+}
+
+.option__body--sub-title {
+    margin-left: 16px;
+    font-weight: 500;
+}
+
+.geoTrustCertificate {
+    width:  88px;
+    height: 49px;
+    margin-top: 8px;
+    margin-right: 16px;
+    border: 1px solid darkgray;
+}
+
+.cardpay--wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    margin-bottom: 24px;
+    padding-top: 4px;
+}
+
+.padlockIcon {
+    width: 30px;
+    height: 40px;
+    margin-left: 16px;
+}
+
+.left-side-cardpay {
+    display: flex;
+    align-items: center;
+}
+
+.cardNumLabel {
+    margin-left: 4px;
+    font-weight: 700;
+}
+
+.cardpay__input {
+    margin-top: 4px;
+    margin-left: 16px;
+    width: 37%;
+    letter-spacing: 0.15px;
+    padding-left: 19px;
+}
+
+.cardnumber-input--title {
+    display: inline-block;
+}
+
+.cardnumber-input--sub-title {
+    font-weight: 400;
+    color: darkgray;
+    font-size: 20px;
+}
+
+.cardpay__input--sub-title {
+    margin-left: 16px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.cardnumber-input {
+    margin-bottom: 16px;
+}
+
+.expDateLabel {
+    margin-left: 4px;
+}
+
+.credit-card-expiration {
+    margin-top:  4px;
+    margin-left: 16px;
+}
+
+.date-separator {
+    font-size: 22px;
+    margin-left:  8px;
+    margin-right: 8px;
+}
+
+.month {
+    width: 72px;
+    padding-left: 20px;
+}
+
+.year {
+    width: 78px;
+}
+
+.credit-card-badges {
+    width: 116px;
+    margin-left: 8px;
+}
+
+/* CVV CODE INPUT*/
+.cvv-code {
+    width: 70px;
+    margin-left: 16px;
+    margin-top: -4px;
+    padding-left: 18px;
+}
+
+/* CVV CODE IMG*/
+.cvvCode {
+    width: 55px;
+    margin-left: 8px;
+}
+
+.security-code-input {
+    margin-bottom: 24px;
+}
+
+.cvv-code-label {
+    margin-left: 4px;
+}
+
+/*
+.option__body--cardpay {
+    padding: 4px 16px;
+}
+*/
+
+.exp-date-input {
+    margin-bottom: 16px;
+}
+
+.cardpay--inner-wrapper {
+    display: flex;
+}
+
+.btn__option:hover {
+    background-color: #7342d6e1;
+}
+
+.affirmBtn {
+    width: 76px;
+}
+
+.klarnaBtn {
+    width: 77px;
+}
+
+.payPalBtn {
+    width: 104px;
+}

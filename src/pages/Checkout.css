@@ -39,8 +39,8 @@
 }
 
 .step-num {
-    width: 45px;
-    height: 45px;
+    width:  44px;
+    height: 44px;
     border: 2px solid gray;
     border-radius: 50%;
     display: flex;
@@ -81,15 +81,8 @@
 }
 
 .ship-info--form-body {
-    width: 100%;
-    max-width: 65%;
-}
-
-.cart__summary {
-    width: 100%;
-    max-width: 35%;
-    border: 1px solid black;
-    height: 100px;
+    width: 160%;
+    /* max-width: 65% !important; */
 }
 
 .cart-summary--item-final {
@@ -118,6 +111,7 @@
     padding-top: 8px;
     padding-bottom: 8px;
     font-size: 32px;
+    letter-spacing: -0.2px;
 }
 
 .checkout-sub-title {
@@ -188,12 +182,16 @@ input {
 
 .cart__summary {
     border-radius: 4px;
+    border: 1px solid black;
     border-top: 4px solid gray;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     border-left: none;
     border-bottom: none;
     border-right: none;
+    width: 98%;
+    /* max-width: 35%; */
+    margin: 0 auto;
 }
 
 .cart-summary__item {

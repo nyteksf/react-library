@@ -5,7 +5,7 @@ import Footer from "./components/Footer";
 import OpenBook from "./pages/OpenBook";
 import Checkout from "./pages/Checkout";
 import Cart from "./pages/Cart";
-import Finalize from "./pages/Finalize";
+import Payment from "./pages/Payment";
 import PageNotFound from "./pages/PageNotFound";
 import Img404 from "./assets/404.png";
 import DeliveryPriceCalculator from "./components/DeliveryPriceCalculator";
@@ -122,9 +122,9 @@ function App() {
                         )}
                     />
                     <Route
-                        path="/finalize"
+                        path="/payment"
                         render={(props) => (
-                            <Finalize {...props} CartItems={cartItems} />
+                            <Payment {...props} CartItems={cartItems} />
                         )}
                     />
                     <Route
