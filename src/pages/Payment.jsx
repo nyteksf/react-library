@@ -66,7 +66,7 @@ const Payment = ({ CartItems, setCartItems }) => {
     function getFutureDate(daysAhead) {
         const options = { weekday: "short", month: "short", day: "numeric" };
         const today = new Date();
-|
+
         // ADD SPECIFIED NUMBER OF DAYS TO CURRENT DATE
         today.setDate(today.getDate() + daysAhead);
 

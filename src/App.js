@@ -13,7 +13,8 @@ import { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { books } from "./data";
 
-<pre>
+    {/*
+        
                    ,oOo
              .0.'OO  _  _   __   __  _____    ___    _  __    ___      ___  
            .Oo`     | \| |  \ \ / / |_   _|  | __|  | |/ /   / __|    | __| 
@@ -22,7 +23,8 @@ import { books } from "./data";
         >|_______| _|"""""|_| """ |_|"""""|_|"""""|_|"""""|_|"""""|_| """ | 
         /oo-@-@-@"  `-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-' 
     ###########################################################################
-</pre>
+
+    */}
 
 function App() {
     const [cartItems, setCartItems] = useState([]);
