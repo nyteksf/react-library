@@ -12,7 +12,7 @@ const DeliveryPriceCalculator = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Handle form input changes
+  // HANDLE FORM INPUT CHANGES
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -21,7 +21,7 @@ const DeliveryPriceCalculator = () => {
     }));
   };
 
-  // Function to fetch FedEx access token
+  // FUNCTION TO FETCH FEDEX ACCESS TOKEN
   const fetchToken = async () => {
     const url = 'https://apis-sandbox.fedex.com/oauth/token';
     const clientId = 'l7a93dc942dd3a4f42b7d65f08f504c441';

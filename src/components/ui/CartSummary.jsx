@@ -9,6 +9,9 @@ const CartSummary = ({
     setIsReadyToPay,
     formSubmit,
     stepNumber,
+    setShowModal,
+    setStepNumber,
+    setIsVisible,
 }) => {
     const submitForm = () => {
         if (formRef.current) {
@@ -38,17 +41,35 @@ const CartSummary = ({
 
     function handleClick() {
         if (stepNumber === "one" && isReadyToPay) {
-            console.log("THIS IS FIRST STEP")
             // RETRIEVE PASSED PROP OBJECT: CONTAINS CUSTOMER INFO. STORE IN SESSIONSTORAGE, LOAD /PAYMENT PAGE. MOVE LOGIC TO HERE FROM OTHER PAGE.
             formSubmit();
         }
         else if (stepNumber === "two" && isReadyToPay) {
-            console.log("Loading next step...");
-            // DO NOTHING, I THINK. STEP 2 IS BILLING INFO ONLY.
-             // PROBABLY CAN REMOVE THIS STEP AFTER
+            setStepNumber("three");
         } else if (stepNumber === "three" && isReadyToPay) {
-            console.log("Firing modal...");
-            // LAUNCH MY CONTACT MODAL HERE: THE TWO DOORS THAT SLAM TOGETHER ONE.
+            // WIPE OUT SESSIONSTORAGE OF CUSTOMER INFO AFTER "SALE"
+            sessionStorage.clear();
+
+            // REPOSITION VIEW
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            
+            const navElement = document.querySelector("nav");
+            if (navElement) {
+                navElement.style.pointerEvents = "none";
+            }
+
+            const progressTrackerElement = document.querySelector(".progress-tracker--wrapper");
+            if (progressTrackerElement) {
+                progressTrackerElement.style.pointerEvents = "none";
+            }
+
+            setTimeout(() => {
+                // SHOW CONTACT MODAL
+                setIsVisible(true);
+            }, 300);
         }
     }
 
@@ -92,7 +113,7 @@ const CartSummary = ({
                     className={`btn btn__checkout ${
                         isReadyToPay === false ? "disabled" : ""
                     }`}
-                    isDisabled={isDisabled}
+                    isdisabled={isDisabled.toString()}
                     onClick={() => handleClick()}
                 >
                     {title}

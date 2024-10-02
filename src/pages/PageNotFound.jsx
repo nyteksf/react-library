@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const PageNotFound = ({ Img404 }) => {
     return (
@@ -20,7 +21,9 @@ const PageNotFound = ({ Img404 }) => {
                             Maybe it was moved or deleted? Or perhaps there was
                             a typo in the URL?
                         </p>
-                        <button className="btn-404 btn">Back to Home</button>
+                        <Link to="/">
+                            <button className="btn-404 btn">Back to Home</button>
+                        </Link>
                     </div>
                 </div>
             </div>

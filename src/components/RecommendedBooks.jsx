@@ -12,16 +12,21 @@ function RecommendedBooks({ books, renderStarRating, bookId }) {
                     .sort((a, b) => b.rating - a.rating)
                     .slice(0, 4)
                     .map((book) => (
-                        <>
-                            <Link to={`/books/${book.id}`} key={book.id} className="book-card">
-                                <img src={book.url} alt={book.title} />
-                                <h3 className="book-title">{book.title}</h3>
-                                <div className="book-rating--recommended">
-                                    <Rating rating={book.rating} />
-                                </div>
-                                <ShowPrice salePrice={book.salePrice} originalPrice={book.originalPrice} />
-                            </Link>
-                        </>
+                        <Link
+                            to={`/books/${book.id}`}
+                            key={book.id}
+                            className="book-card"
+                        >
+                            <img src={book.url} alt={book.title} />
+                            <h3 className="book-title">{book.title}</h3>
+                            <div className="book-rating--recommended">
+                                <Rating rating={book.rating} />
+                            </div>
+                            <ShowPrice
+                                salePrice={book.salePrice}
+                                originalPrice={book.originalPrice}
+                            />
+                        </Link>
                     ))}
             </div>
         </div>

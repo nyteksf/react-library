@@ -18,19 +18,19 @@ function App() {
 
     function addItemToCart(newBook) {
         setCartItems((prevCartItems) => {
-            // Check if the item already exists in the cart
+            // CHECK IF ITEM ALREADY IN CART
             const itemIndex = prevCartItems.findIndex(
                 (item) => item.id === newBook.id
             );
 
             if (itemIndex > -1) {
-                // If item exists, update the quantity
+                // IF ITEM EXISTS UPDATE QUANTITY
                 const updatedCartItems = [...prevCartItems];
                 updatedCartItems[itemIndex].quantity += 1; // Increment by 1
 
                 return updatedCartItems;
             } else {
-                // If item does not exist, add it to the cart with an initial quantity of 1
+                // IF ITEM DOESN'T EXIST, ADD TO CART WITH QUANTITY OF "1"
 
                 return [...prevCartItems, { ...newBook, quantity: 1 }];
             }
@@ -45,28 +45,28 @@ function App() {
 
     function updateItemQuantity(bookId, quantity) {
         setCartItems((prevCartItems) => {
-            // Find the item index
+            // LOCATE ITEM INDEX
             const itemIndex = prevCartItems.findIndex(
                 (item) => item.id === bookId
             );
 
             if (itemIndex > -1) {
-                // Update quantity if item is found
+                // UPDATE QUANTITY IF ITEM FOUND
                 const updatedCartItems = [...prevCartItems];
                 if (quantity <= 0) {
-                    // Remove item if quantity is 0 or less
+                    // REMOVE ITEM IF QUANTITY <= 0
 
                     return updatedCartItems.filter(
                         (item) => item.id !== bookId
                     );
                 } else {
-                    // Update the item quantity
+                    // UPDATE ITEM QUANTITY
                     updatedCartItems[itemIndex].quantity = quantity;
 
                     return updatedCartItems;
                 }
             }
-            return prevCartItems; // No change if item is not found
+            return prevCartItems; // NO CHANGE IF ITEM NOT FOUND
         });
     }
 
@@ -124,7 +124,7 @@ function App() {
                     <Route
                         path="/payment"
                         render={(props) => (
-                            <Payment {...props} CartItems={cartItems} />
+                            <Payment {...props} setCartItems={setCartItems} CartItems={cartItems} />
                         )}
                     />
                     <Route

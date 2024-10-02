@@ -11,6 +11,7 @@ const DisplayBillingInfo = () => {
         city: "",
         state: "",
         zipCode: "",
+        country: "",
     });
 
     useEffect(() => {
@@ -22,6 +23,7 @@ const DisplayBillingInfo = () => {
         const storedCity = sessionStorage.getItem("billingCity") || sessionStorage.getItem("city") || "";
         const storedState = sessionStorage.getItem("billingState") || sessionStorage.getItem("state") || "";
         const storedZipCode = sessionStorage.getItem("billingZipCode") || sessionStorage.getItem("zipCode") || "";
+        const storedCountry = sessionStorage.getItem("billingSelectCountry") || sessionStorage.getItem("country") || "";
 
         setBillingData({
             email: storedEmail,
@@ -32,6 +34,7 @@ const DisplayBillingInfo = () => {
             city: storedCity,
             state: storedState,
             zipCode: storedZipCode,
+            country: storedCountry,
         });
     }, []);
 
@@ -80,6 +83,11 @@ const DisplayBillingInfo = () => {
                     <div className="billing-info--item">
                         <label className="billing-info--label">Zipcode: </label>
                         <input type="text" value={billingData.zipCode} className="billing-input" readOnly disabled />
+                    </div>
+                    
+                    <div className="billing-info--item">
+                        <label className="billing-info--label">Country: </label>
+                        <input type="text" value={billingData.country} className="billing-input" readOnly disabled />
                     </div>
                 </form>
             </div>

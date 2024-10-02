@@ -902,7 +902,7 @@ select {
 
 .btn-404:hover {
     background-color: transparent;
-    color: darkgray;
+    color: slategray;
     border: 2px solid rgba(199, 0, 199, 0.847);
 }
 

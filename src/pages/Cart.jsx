@@ -8,7 +8,7 @@ const Cart = ({
   removeItemFromCart,
   updateItemQuantity,
 }) => {
-  // Calculate totals
+  // CALCULATE TOTALS
   const subtotal = cartItems.reduce((acc, item) => {
     return acc + item.quantity * (item.salePrice || item.originalPrice);
   }, 0);
@@ -17,7 +17,7 @@ const Cart = ({
   const tax   = subtotal * taxRate;
   const total = subtotal + tax;
 
-  // Render individual cart item
+  // RENDER INDIVIDUAL CART ITEM
   const renderCart = (item) => {
     const { url, title, originalPrice, salePrice, id, quantity } = item;
     const itemPrice = salePrice || originalPrice;
@@ -81,7 +81,7 @@ const Cart = ({
         ) : (
           <>
             <div className="cart__grid-top">
-              <h2 className="cart-title">Cart</h2>
+              <h2 className="cart-title">Shopping Cart</h2>
               <div className="grid-top--labels">
                 <h5>Book</h5> <h5>Quantity</h5> <h5>Price</h5>
               </div>

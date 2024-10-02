@@ -147,11 +147,6 @@
     background-color: #7342d6e3;
 }
 
-.cart-item--wrapper:nth-child(even) {
-    background-color: lightgray;
-    border-radius: 4px;
-}
-
 .cart-item--wrapper {
     padding: 16px;
 }

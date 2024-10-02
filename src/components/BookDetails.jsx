@@ -46,9 +46,9 @@ const BookDetails = ({ book, addItemToCart, cartItems, id }) => {
                         />
                     </div>
                     <h3 className="summary__para--title">Summary</h3>
-                    <p className="summary__para">
+                    <div className="summary__para">
                         {printSummary(book)}
-                    </p>
+                    </div>
                     {bookIsInCart ? (
                         <Link to="/cart" className="book__link">
                             <button className="cartButton btn">View Cart</button>

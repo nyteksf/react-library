@@ -20,7 +20,7 @@ const Nav = ({ numberOfItems }) => {
 
     if (isCart) {
         const navLinks = document.getElementsByClassName("nav__link");
-        console.log(navLinks);
+
         for (let i = 0; i < navLinks.length; i++) {
             navLinks[i].classList.remove("nav__link--active");
         }

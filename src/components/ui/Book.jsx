@@ -35,7 +35,7 @@ const Book = ({ book, bookId }) => {
                         </figure>
                     </Link>
                     <div className="book__title">
-                        <Link to={book.id} className="book__title--link">
+                        <Link to={`${book.id}`} className="book__title--link">
                             {book.title}
                         </Link>
                     </div>
