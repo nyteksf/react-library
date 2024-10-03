@@ -68,9 +68,10 @@ const Modal = ({ showModal, setShowModal, isVisible, setIsVisible, setCartItems 
                     setLoading(false); // HIDE LOADING STATE
                     setSuccess(true);  // SHOW SUCCESS STATE
 
-                    setCartItems([]); // CLEAR THE CART
-
                     setTimeout(() => {
+                        // PUSH USER TO HOME PAGE     
+                        sessionStorage.clear(); // WIPE SESSIONSTORAGE
+                        setCartItems([]); // CLEAR THE CART
                         history.push("/");
                     }, 2000);
                 },

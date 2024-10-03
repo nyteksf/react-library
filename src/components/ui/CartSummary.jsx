@@ -47,9 +47,6 @@ const CartSummary = ({
         else if (stepNumber === "two" && isReadyToPay) {
             setStepNumber("three");
         } else if (stepNumber === "three" && isReadyToPay) {
-            // WIPE OUT SESSIONSTORAGE OF CUSTOMER INFO AFTER "SALE"
-            sessionStorage.clear();
-
             // REPOSITION VIEW
             window.scrollTo({
                 top: 0,
